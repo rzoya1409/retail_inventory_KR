@@ -1,0 +1,128 @@
+{
+  "inventory_rules": [
+    {
+      "rule_name": "Urgent Reorder Rule",
+      "conditions": [
+        {
+          "field": "current_stock",
+          "operator": "<=",
+          "value_field": "reorder_level"
+        }
+      ],
+      "decision": "URGENT REORDER: Place a purchase order immediately.",
+      "reason": "Current stock is at or below the defined reorder level."
+    },
+    {
+      "rule_name": "Low Stock Rule",
+      "conditions": [
+        {
+          "field": "current_stock",
+          "operator": "<=",
+          "value": 20
+        }
+      ],
+      "decision": "LOW STOCK ALERT: Monitor stock and prepare a reorder plan.",
+      "reason": "The available quantity is 20 units or fewer."
+    },
+    {
+      "rule_name": "Stock Sufficient Rule",
+      "conditions": [
+        {
+          "field": "current_stock",
+          "operator": ">",
+          "value_field": "reorder_level"
+        }
+      ],
+      "decision": "STOCK STATUS: Current stock is above the reorder level.",
+      "reason": "No immediate reorder is required based on the current stock level."
+    }
+  ],
+
+  "expiry_rules": [
+    {
+      "rule_name": "Expired Product Rule",
+      "conditions": [
+        {
+          "field": "days_until_expiry",
+          "operator": "<=",
+          "value": 0
+        }
+      ],
+      "decision": "EXPIRED PRODUCT: Remove the item from sale immediately.",
+      "reason": "The expiry date has passed or the product expires today."
+    },
+    {
+      "rule_name": "Near Expiry Rule",
+      "conditions": [
+        {
+          "field": "days_until_expiry",
+          "operator": ">",
+          "value": 0
+        },
+        {
+          "field": "days_until_expiry",
+          "operator": "<=",
+          "value": 7
+        }
+      ],
+      "decision": "NEAR EXPIRY: Move the item to a clearance section or apply a controlled discount.",
+      "reason": "The product will expire within the next 7 days."
+    },
+    {
+      "rule_name": "Expiry Monitoring Rule",
+      "conditions": [
+        {
+          "field": "days_until_expiry",
+          "operator": ">",
+          "value": 7
+        }
+      ],
+      "decision": "EXPIRY STATUS: No immediate expiry action is required.",
+      "reason": "The product has more than 7 days remaining before expiry."
+    }
+  ],
+
+  "sales_rules": [
+    {
+      "rule_name": "Slow Moving Product Rule",
+      "conditions": [
+        {
+          "field": "days_since_last_sale",
+          "operator": ">=",
+          "value": 30
+        }
+      ],
+      "decision": "SLOW MOVING ITEM: Consider a discount, bundle offer, or better product placement.",
+      "reason": "The item has not been sold for 30 days or more."
+    },
+    {
+      "rule_name": "Fast Moving Product Rule",
+      "conditions": [
+        {
+          "field": "daily_sales_rate",
+          "operator": ">=",
+          "value": 10
+        }
+      ],
+      "decision": "FAST MOVING ITEM: Maintain buffer stock and review the reorder level.",
+      "reason": "The item sells at 10 or more units per day."
+    },
+    {
+      "rule_name": "Normal Sales Rule",
+      "conditions": [
+        {
+          "field": "days_since_last_sale",
+          "operator": "<",
+          "value": 30
+        },
+        {
+          "field": "daily_sales_rate",
+          "operator": "<",
+          "value": 10
+        }
+      ],
+      "decision": "NORMAL SALES STATUS: Continue regular stock monitoring.",
+      "reason": "The product is selling within the normal monitoring range."
+    }
+  ]
+}

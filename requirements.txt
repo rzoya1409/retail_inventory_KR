@@ -1,0 +1,2 @@
+# No external packages are required.
+# This project uses Python's built-in json module.

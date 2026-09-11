@@ -1,0 +1,36 @@
+RETAIL INVENTORY AND REORDER MANAGEMENT SYSTEM
+
+Enter product name: Chocolate Milk
+Enter current stock quantity: 8
+Enter reorder level: 10
+Enter average daily sales quantity: 12
+Enter days until expiry: 5
+Enter days since last sale: 1
+
+
+Product Name: Chocolate Milk
+
+
+INVENTORY AND REORDER DECISION
+
+Rule Fired : Urgent Reorder Rule
+Decision   : URGENT REORDER: Place a purchase order immediately.
+Reason     : Current stock is at or below the defined reorder level.
+
+Rule Fired : Low Stock Rule
+Decision   : LOW STOCK ALERT: Monitor stock and prepare a reorder plan.
+Reason     : The available quantity is 20 units or fewer.
+
+
+EXPIRY MANAGEMENT DECISION
+
+Rule Fired : Near Expiry Rule
+Decision   : NEAR EXPIRY: Move the item to a clearance section or apply a controlled discount.
+Reason     : The product will expire within the next 7 days.
+
+
+SALES AND PROMOTION DECISION
+
+Rule Fired : Fast Moving Product Rule
+Decision   : FAST MOVING ITEM: Maintain buffer stock and review the reorder level.
+Reason     : The item sells at 10 or more units per day.
